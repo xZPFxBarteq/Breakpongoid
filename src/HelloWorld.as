@@ -10,8 +10,11 @@ package
 	public class HelloWorld extends FlxGame
 	{
 		
+		var windowWidgh:Number = 320;
+		var windowHeight:Number = 240;
+		
 		public function HelloWorld() {
-			super(320, 240, PlayState, 2);
+			super(windowWidgh, windowHeight, PlayState, 2);
 		}
 		
 	}
