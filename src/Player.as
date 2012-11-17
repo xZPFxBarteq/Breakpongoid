@@ -12,7 +12,7 @@ package
 		
 		public function Player() 
 		{
-			position = new Position();
+			position = new Position(50,50);
 		}
 		
 	}

@@ -6,12 +6,13 @@ package
 	 */
 	public class Position 
 	{
-		public var x:Number = 0;
-		public var y:Number = 0;
+		public var x:Number;
+		public var y:Number;
 		
-		public function Position() 
+		public function Position(x:Number,y:Number) 
 		{
-			
+			this.x = x;
+			this.y = y;
 		}
 		
 	}
