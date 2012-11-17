@@ -10,8 +10,7 @@ package
 	public class HelloWorld extends FlxGame
 	{
 		
-		public function HelloWorld() 
-		{
+		public function HelloWorld() {
 			super(320, 240, PlayState, 2);
 		}
 		
