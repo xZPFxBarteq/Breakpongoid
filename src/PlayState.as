@@ -31,20 +31,40 @@ package
 		
 		override public function update():void
 		{
-			if (FlxG.collide(player1, ball))
+			if (FlxG.collide(player1, ball) || FlxG.collide(player2, ball))
 			{
 				ball.velocity.x *= -1;
+				player1.velocity.x = 0;
+				player1.velocity.y = 0;
+				player2.velocity.x = 0;
+				player2.velocity.y = 0;
 			}
 			if (FlxG.keys.UP)
 			{
-				if (player1.y > 3)
+				if (player2.y > 3)
 				{
-					player1.y = player1.y - 3;
+					player2.y = player2.y - 3;
 				}
 				
 			}
 			
 			if (FlxG.keys.DOWN)
+			{
+				if (player2.y < HelloWorld.windowHeight - player2.height - 3)
+				{
+					player2.y = player2.y + 3;
+				}
+			}
+			
+			if (FlxG.keys.W)
+			{
+				if (player1.y > 3)
+				{
+					player1.y = player1.y - 3;
+				}
+			}
+			
+			if (FlxG.keys.S)
 			{
 				if (player1.y < HelloWorld.windowHeight - player1.height - 3)
 				{
