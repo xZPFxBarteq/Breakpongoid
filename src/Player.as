@@ -1,18 +1,21 @@
 package  
 {
+	import org.flixel.FlxPoint;
+	import org.flixel.FlxSprite;
 	/**
 	 * ...
 	 * @author matt
 	 */
-	public class Player
+	public class Player extends FlxSprite
 	{
-		public var width:Number = 10;
-		public var height:Number = 30;
-		public var position:Position;
 		
-		public function Player() 
+		public function Player(position:FlxPoint) 
 		{
-			position = new Position(50,50);
+			this.width = 10;
+			this.height = 30;
+			this.x = position.x;
+			this.y = position.y;			
+			makeGraphic(width, height, 0xff3a5c39);
 		}
 		
 	}

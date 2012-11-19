@@ -1,34 +1,41 @@
-package  
+package
 {
 	import flash.events.TextEvent;
+	import org.flixel.FlxSprite;
+	import org.flixel.FlxPoint;
+	
 	/**
 	 * ...
 	 * @author matt
 	 */
-	public class Ball 
+	public class Ball extends FlxSprite
 	{
-		public var position:Position;
 		public var motion:Motion;
 		
-		//public var color:
-		
-		public function Ball() 
+		public function Ball(position:FlxPoint)
 		{
-			position = new Position(50, 50);
-			motion = new Motion(6,6);
+			this.width = 5;
+			this.height = 5;
+			this.x = position.x;
+			this.y = position.y;
+			makeGraphic(width, height, 0xFFFF0000);
+			motion = new Motion(3, 3);
 		}
 		
-		public function updatePosition():void {
-			position.x = position.x + motion.directionX * motion.accelerationX;
-			position.y = position.y + motion.directionY * motion.accelerationY;
-			if (position.x > HelloWorld.windowWidgh || position.x < 5) {
+		public function updatePosition():void
+		{
+			x += motion.directionX * motion.accelerationX;
+			y += motion.directionY * motion.accelerationY;
+			if (x > HelloWorld.windowWidth || x < 0)
+			{
 				motion.changeDirectionX();
 			}
-			if (position.y > HelloWorld.windowHeight || position.y < 10 ) {
+			if (y > HelloWorld.windowHeight || y < 0)
+			{
 				motion.changeDirectionY();
 			}
 		}
-		
+	
 	}
 
 }
