@@ -31,7 +31,10 @@ package
 		
 		override public function update():void
 		{
-			//FlxG.collide();
+			if (FlxG.collide(player1, ball))
+			{
+				ball.velocity.x *= -1;
+			}
 			if (FlxG.keys.UP)
 			{
 				if (player1.y > 3)
@@ -48,7 +51,6 @@ package
 					player1.y = player1.y + 3;
 				}
 			}
-			ball.updatePosition();
 			super.update();
 		}
 	

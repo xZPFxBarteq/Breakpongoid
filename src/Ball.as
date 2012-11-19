@@ -18,24 +18,22 @@ package
 			this.height = 5;
 			this.x = position.x;
 			this.y = position.y;
+			this.velocity = new FlxPoint(75, 75);
 			makeGraphic(width, height, 0xFFFF0000);
 			motion = new Motion(3, 3);
 		}
 		
-		public function updatePosition():void
+		override public function update():void
 		{
-			x += motion.directionX * motion.accelerationX;
-			y += motion.directionY * motion.accelerationY;
-			if (x > HelloWorld.windowWidth || x < 0)
-			{
-				motion.changeDirectionX();
-			}
-			if (y > HelloWorld.windowHeight || y < 0)
-			{
-				motion.changeDirectionY();
-			}
+			super.update();
+			
+			if ((this.x <= 0) || (this.x >= HelloWorld.windowWidth - width))
+				velocity.x *= -1;
+			
+			if ((this.y <= 0) || (this.y >= HelloWorld.windowHeight - height))
+				velocity.y *= -1;
 		}
-	
+		
 	}
 
 }
