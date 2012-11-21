@@ -3,6 +3,7 @@ package
 	import flash.events.TextEvent;
 	import org.flixel.FlxSprite;
 	import org.flixel.FlxPoint;
+	import org.flixel.FlxObject;
 	
 	/**
 	 * ...
@@ -10,7 +11,6 @@ package
 	 */
 	public class Ball extends FlxSprite
 	{
-		public var motion:Motion;
 		
 		public function Ball(position:FlxPoint)
 		{
@@ -20,7 +20,8 @@ package
 			this.y = position.y;
 			this.velocity = new FlxPoint(75, 75);
 			makeGraphic(width, height, 0xFFFF0000);
-			motion = new Motion(20, 20);
+			elasticity = 1;
+			angularVelocity = 0;
 		}
 		
 		override public function update():void
@@ -32,8 +33,9 @@ package
 			
 			if ((this.y <= 0) || (this.y >= HelloWorld.windowHeight - height))
 				velocity.y *= -1;
-		}
 		
+		}
+	
 	}
 
 }
