@@ -16,6 +16,7 @@ package
 			this.x = position.x;
 			this.y = position.y;			
 			makeGraphic(width, height, 0xff3a5c39);
+
 		}
 		
 	}

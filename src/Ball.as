@@ -20,7 +20,7 @@ package
 			this.y = position.y;
 			this.velocity = new FlxPoint(75, 75);
 			makeGraphic(width, height, 0xFFFF0000);
-			motion = new Motion(3, 3);
+			motion = new Motion(20, 20);
 		}
 		
 		override public function update():void
