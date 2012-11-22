@@ -8,10 +8,12 @@ package
 	 */
 	public class Player extends FlxSprite
 	{
+		public var id:int;
 		public var wall:Wall;
-		public function Player(position:FlxPoint) 
+		public function Player(id:int,position:FlxPoint) 
 		{
-			wall = new Wall();
+			this.id = id;
+			wall = new Wall(this.id);
 			this.width = 10;
 			this.height = 30;
 			this.x = position.x;
