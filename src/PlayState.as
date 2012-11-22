@@ -27,6 +27,9 @@ package
 			add(player2);
 			add(ball);
 			add(timeText);
+			add(player1.wall.bricks[0]);
+			add(player1.wall.bricks[1]);
+			add(player1.wall.bricks[2]);
 		}
 		
 		override public function update():void
