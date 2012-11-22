@@ -26,7 +26,7 @@ package
 		
 		public function move(byPixels:int):void {
 			this.y += byPixels;
-			body.GetPosition().Set((x + (width / 2)) / HelloWorld.pixelMeterRatio, (y + (height / 2)) / HelloWorld.pixelMeterRatio);
+			body.SetPosition(new b2Vec2((x + (width / 2)) / HelloWorld.pixelMeterRatio, (y + (height / 2)) / HelloWorld.pixelMeterRatio));
 		}
 		
 		public function createBody():void
@@ -43,7 +43,7 @@ package
 			var bodyDefinition:b2BodyDef = new b2BodyDef();
 			bodyDefinition.position.Set((x + (width / 2)) / HelloWorld.pixelMeterRatio, (y + (height / 2)) / HelloWorld.pixelMeterRatio);
 			bodyDefinition.angle = 0;
-			bodyDefinition.type = b2Body.b2_dynamicBody;
+			bodyDefinition.type = b2Body.b2_staticBody;
 			
 			body = world.CreateBody(bodyDefinition);
 			body.CreateFixture(fixtureDefinition);
