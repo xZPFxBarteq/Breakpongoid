@@ -12,6 +12,7 @@ package
 		
 		public static var windowWidth:Number = 320;
 		public static var windowHeight:Number = 240;
+		public static var pixelMeterRatio:Number = 30;
 		
 		public function HelloWorld() {
 			super(windowWidth, windowHeight, PlayState, 2);
