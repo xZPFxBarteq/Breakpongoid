@@ -13,10 +13,13 @@ package
 	 */
 	public class Player extends GameObject implements WithBody
 	{
-		
+		//public var id:int;
+		//public var wall:Wall;
 		public function Player(position:FlxPoint, world:b2World)
 		{
 			super(position, new FlxPoint(10, 30), world);
+			//this.id = id;
+			//wall = new Wall(this.id);		
 			makeGraphic(width, height, 0xff3a5c39);
 			createBody();
 		}
