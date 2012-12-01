@@ -25,11 +25,8 @@ package
 		public function Brick(x:int, y:int, id:int, world:b2World)
 		{
 			super(new FlxPoint(x, y), new FlxPoint(_width, _height), world);
-			
 			this.width = _width;
 			this.height = _height;
-			this.x = x;
-			this.y = y;
 			bonus = new Bonus();
 			immovable = true;
 			elasticity = 1;
