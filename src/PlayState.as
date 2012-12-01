@@ -14,8 +14,8 @@ package
 		private var wallGroup1:FlxGroup;
 		private var wallGroup2:FlxGroup;
 		
-		private var timeText:FlxText;
-		private var timetxt:String = "xxx";
+		private var scoreText:FlxText;
+		private var score:String = "";
 		
 		override public function create():void {
 			player1 = new Player(1,new FlxPoint(40, 110));
@@ -24,11 +24,12 @@ package
 			wallGroup1 = new FlxGroup();
 			wallGroup2 = new FlxGroup();
 			
-			timeText = new FlxText(10, 10, 10, timetxt, true);
+			score = player1.wall.size + " : " + player2.wall.size;
+			scoreText = new FlxText(100, 10, 10, score, true);
 			add(player1);
 			add(player2);
 			add(ball);
-			add(timeText);
+			add(scoreText);
 			for (var i:int = 0; i < player1.wall.bricks.length; i++) {
 				//add(player1.wall.bricks[i]);
 				wallGroup1.add(player1.wall.bricks[i]);
@@ -41,7 +42,14 @@ package
 			add(wallGroup2);	
 		}
 		
-		private function brickCollision(target:FlxSprite, source:FlxSprite):void {
+		private function wallCollision1(target:FlxSprite, source:FlxSprite):void {
+			player1.wall.size--;
+			score = player1.wall.size + " : " + player2.wall.size;
+			target.kill();
+		}
+		private function wallCollision2(target:FlxSprite, source:FlxSprite):void {
+			player2.wall.size--;
+			score = player1.wall.size + " : " + player2.wall.size;
 			target.kill();
 		}
   
@@ -50,8 +58,8 @@ package
 			super.update();
 			//Zakomentowac dwie linijki to beda kolizje z rakietka
 			
-			FlxG.collide(wallGroup1, ball, brickCollision);
-			FlxG.collide(wallGroup2, ball, brickCollision);
+			FlxG.collide(wallGroup1, ball, wallCollision1);
+			FlxG.collide(wallGroup2, ball, wallCollision2);
 			FlxG.collide();
 			       
 
@@ -104,6 +112,7 @@ package
 					}
 				}
 			}
+			
 		
 		}
 	
