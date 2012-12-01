@@ -25,7 +25,7 @@ package
 			createBody();
 		}
 		
-		public function move(byPixels:int):void {
+		public function move(byPixels:int):void {			
 			this.y += byPixels;
 			body.SetPosition(new b2Vec2((x + (width / 2)) / HelloWorld.pixelMeterRatio, (y + (height / 2)) / HelloWorld.pixelMeterRatio));
 		}

@@ -25,14 +25,11 @@ package
 		public function Brick(x:int, y:int, id:int, world:b2World)
 		{
 			super(new FlxPoint(x, y), new FlxPoint(_width, _height), world);
-			this.width = _width;
-			this.height = _height;
 			bonus = new Bonus();
 			immovable = true;
 			elasticity = 1;
 			makeGraphic(width, height, 0xff3a43b2);
 			createBody();
-		
 		}
 		
 		public function createBody():void
