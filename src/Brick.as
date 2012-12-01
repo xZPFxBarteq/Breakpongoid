@@ -1,4 +1,4 @@
-package  
+package
 {
 	import org.flixel.FlxCamera;
 	import flash.events.TextEvent;
@@ -10,6 +10,7 @@ package
 	import Box2D.Collision.*;
 	import Box2D.Collision.Shapes.*;
 	import Box2D.Common.Math.*;
+	
 	/**
 	 * ...
 	 * @author matt
@@ -21,9 +22,9 @@ package
 		public static var _height:int = 20;
 		public static var _width:int = 10;
 		
-		public function Brick(x:int, y:int,id:int,world:b2World) {
-			super(new FlxPoint(x,y), new FlxPoint(_width, _height), world);
-			
+		public function Brick(x:int, y:int, id:int, world:b2World)
+		{
+			super(new FlxPoint(x, y), new FlxPoint(_width, _height), world);
 			
 			this.width = _width;
 			this.height = _height;
@@ -34,7 +35,7 @@ package
 			elasticity = 1;
 			makeGraphic(width, height, 0xff3a43b2);
 			createBody();
-			
+		
 		}
 		
 		public function createBody():void
@@ -56,16 +57,16 @@ package
 			body = world.CreateBody(bodyDefinition);
 			body.CreateFixture(fixtureDefinition);
 		}
-		
-		/*private function killBrick():void {
-			//TODO wywolac bonus
-			kill();
-		}
-		
-		override public function update():void {
-			super.update();
-			
-		}*/
+	
+	/*private function killBrick():void {
+	   //TODO wywolac bonus
+	   kill();
+	   }
+	
+	   override public function update():void {
+	   super.update();
+	
+	 }*/
 	}
 
 }

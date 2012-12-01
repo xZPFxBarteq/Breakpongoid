@@ -19,7 +19,7 @@ package
 		private var ball:Ball;
 		private var wallGroup1:FlxGroup;
 		private var wallGroup2:FlxGroup;
-		//pozniej zapakowac w jakas klase:
+		//TODO pozniej zapakowac w jakas klase:
 		private var northWall:Wall;
 		private var southWall:Wall;
 		private var eastWall:Wall;

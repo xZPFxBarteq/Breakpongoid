@@ -15,6 +15,7 @@ package
 	{
 		public var id:int;
 		public var wall:BrickWall;
+		
 		public function Player(position:FlxPoint, world:b2World, id:int)
 		{
 			super(position, new FlxPoint(10, 30), world);
