@@ -20,14 +20,26 @@ package
 		{
 			super(position, new FlxPoint(10, 30), world);
 			this.id = id;
-			wall = new BrickWall(this.id, world);			
+			wall = new BrickWall(this.id, world);
 			makeGraphic(width, height, 0xff3a5c39);
 			createBody();
 		}
 		
-		public function move(byPixels:int):void {			
-			this.y += byPixels;
-			body.SetPosition(new b2Vec2((x + (width / 2)) / HelloWorld.pixelMeterRatio, (y + (height / 2)) / HelloWorld.pixelMeterRatio));
+		override public function update():void
+		{
+			x = (body.GetPosition().x * HelloWorld.pixelMeterRatio) - width / 2;
+			y = (body.GetPosition().y * HelloWorld.pixelMeterRatio) - height / 2;
+			if (y < 2 || y > HelloWorld.windowHeight - height - 2) {
+				body.SetLinearVelocity(new b2Vec2(0, 0));
+			}
+			super.update();
+		}
+		
+		public function move(byPixels:int):void
+		{
+			if (y > 2 || y < HelloWorld.windowHeight - height - 2){
+				body.SetLinearVelocity(new b2Vec2(0, byPixels));
+			}
 		}
 		
 		public function createBody():void
@@ -44,7 +56,9 @@ package
 			var bodyDefinition:b2BodyDef = new b2BodyDef();
 			bodyDefinition.position.Set((x + (width / 2)) / HelloWorld.pixelMeterRatio, (y + (height / 2)) / HelloWorld.pixelMeterRatio);
 			bodyDefinition.angle = 0;
-			bodyDefinition.type = b2Body.b2_staticBody;
+			bodyDefinition.type = b2Body.b2_kinematicBody;
+			bodyDefinition.linearDamping = 1;
+			bodyDefinition.allowSleep = false;
 			
 			body = world.CreateBody(bodyDefinition);
 			body.CreateFixture(fixtureDefinition);

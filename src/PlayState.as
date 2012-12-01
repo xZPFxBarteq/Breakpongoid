@@ -82,34 +82,31 @@ package
 		{
 			world.Step(FlxG.elapsed, 10, 10);
 			super.update();
-			//Zakomentowac dwie linijki to beda kolizje z rakietka
-			
-			FlxG.collide(player1Bricks, ball, wallCollision1);
-			FlxG.collide(player2Bricks, ball, wallCollision2);
-			FlxG.collide();
 			
 			if (FlxG.keys.UP)
 			{
 				if (player2.y > 3)
 				{
-					player2.move(-3);
+					player2.move(-4);
 				}
-				
 			}
-			
 			if (FlxG.keys.DOWN)
 			{
 				if (player2.y < HelloWorld.windowHeight - player2.height - 3)
 				{
-					player2.move(3);
+					player2.move(4);
 				}
+			}
+			if (FlxG.keys.justReleased("UP") || FlxG.keys.justReleased("DOWN"))
+			{
+				player2.move(0);
 			}
 			
 			if (FlxG.keys.W)
 			{
 				if (player1.y > 3)
 				{
-					player1.move(-3);
+					player1.move(-4);
 				}
 			}
 			
@@ -117,8 +114,13 @@ package
 			{
 				if (player1.y < HelloWorld.windowHeight - player1.height - 3)
 				{
-					player1.move(3);
+					player1.move(4);
 				}
+			}
+			
+			if (FlxG.keys.justReleased("W") || FlxG.keys.justReleased("S"))
+			{
+				player1.move(0);
 			}
 			
 			world.ClearForces();
