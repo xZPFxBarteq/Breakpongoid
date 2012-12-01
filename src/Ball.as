@@ -29,7 +29,7 @@ package
 			x = (body.GetPosition().x * HelloWorld.pixelMeterRatio) - width / 2;
 			y = (body.GetPosition().y * HelloWorld.pixelMeterRatio) - height / 2;
 			angle = body.GetAngle() * (180 / Math.PI);
-			super.update();
+			super.update();			
 		}
 		
 		public function createBody():void
@@ -51,6 +51,8 @@ package
 			
 			body = world.CreateBody(bodyDefinition);
 			body.CreateFixture(fixtureDefinition);
+			
+			body.SetUserData(new BodyType(BodyType.BALL));
 		}
 	
 	}

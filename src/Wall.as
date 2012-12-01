@@ -38,6 +38,8 @@ package
 			
 			body = world.CreateBody(bodyDefinition);
 			body.CreateFixture(fixtureDefinition);
+			
+			body.SetUserData(new BodyType(BodyType.WALL));
 		}
 	}
 

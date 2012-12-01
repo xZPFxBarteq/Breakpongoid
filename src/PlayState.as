@@ -27,6 +27,8 @@ package
 		override public function create():void
 		{
 			world = new b2World(new b2Vec2(0, 0), true);
+			var ballContactListener:BallContactListener = new BallContactListener();
+			world.SetContactListener(ballContactListener);
 			
 			walls = new FlxGroup();
 			walls.add(new Wall(new FlxPoint(0, 0), new FlxPoint(HelloWorld.windowWidth, 3), world)); //north

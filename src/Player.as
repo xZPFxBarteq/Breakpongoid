@@ -20,7 +20,7 @@ package
 		{
 			super(position, new FlxPoint(10, 30), world);
 			this.id = id;
-			wall = new BrickWall(this.id,world);		
+			wall = new BrickWall(this.id, world);			
 			makeGraphic(width, height, 0xff3a5c39);
 			createBody();
 		}
@@ -48,6 +48,8 @@ package
 			
 			body = world.CreateBody(bodyDefinition);
 			body.CreateFixture(fixtureDefinition);
+			
+			body.SetUserData(new BodyType(BodyType.PLAYER));
 		}
 	
 	}
