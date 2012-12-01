@@ -14,17 +14,12 @@ package
 	public class PlayState extends FlxState
 	{
 		private var world:b2World;
+		private var walls:FlxGroup;
+		private var ball:Ball;
 		private var player1:Player;
 		private var player2:Player;
-		private var ball:Ball;
 		private var player1Bricks:FlxGroup;
 		private var player2Bricks:FlxGroup;
-		
-		//TODO pozniej zapakowac w jakas klase:
-		private var northWall:Wall;
-		private var southWall:Wall;
-		private var eastWall:Wall;
-		private var westWall:Wall;
 		
 		private var scoreText:FlxText;
 		private var score:String = "";
@@ -32,27 +27,19 @@ package
 		override public function create():void
 		{
 			world = new b2World(new b2Vec2(0, 0), true);
-			northWall = new Wall(new FlxPoint(0, 0), new FlxPoint(HelloWorld.windowWidth, 3), world);
-			southWall = new Wall(new FlxPoint(0, 237), new FlxPoint(HelloWorld.windowWidth, 3), world);
-			eastWall = new Wall(new FlxPoint(317, 0), new FlxPoint(3, HelloWorld.windowHeight), world);
-			westWall = new Wall(new FlxPoint(0, 0), new FlxPoint(3, HelloWorld.windowHeight), world);
+			
+			walls = new FlxGroup();
+			walls.add(new Wall(new FlxPoint(0, 0), new FlxPoint(HelloWorld.windowWidth, 3), world)); //north
+			walls.add(new Wall(new FlxPoint(0, 237), new FlxPoint(HelloWorld.windowWidth, 3), world)); //south
+			walls.add(new Wall(new FlxPoint(317, 0), new FlxPoint(3, HelloWorld.windowHeight), world)); //east
+			walls.add(new Wall(new FlxPoint(0, 0), new FlxPoint(3, HelloWorld.windowHeight), world)); //west
+			
+			ball = new Ball(new FlxPoint(50, 110), world);
+			
 			player1 = new Player(new FlxPoint(20, 110), world, 1);
 			player2 = new Player(new FlxPoint(290, 110), world, 2);
-			ball = new Ball(new FlxPoint(50, 110), world);
 			player1Bricks = new FlxGroup();
 			player2Bricks = new FlxGroup();
-			
-			//score = player1.wall.size + " : " + player2.wall.size;
-			scoreText = new FlxText(100, 10, 10, score, true);
-			add(northWall);
-			add(southWall);
-			add(eastWall);
-			add(westWall);
-			
-			add(player1);
-			add(player2);
-			add(ball);
-			add(scoreText);
 			
 			for (var i:int = 0; i < player1.wall.bricks.length; i++)
 			{
@@ -63,8 +50,16 @@ package
 				player2Bricks.add(player2.wall.bricks[i]);
 			}
 			
+			//score = player1.wall.size + " : " + player2.wall.size;
+			scoreText = new FlxText(100, 10, 10, score, true);
+			
+			add(walls);
+			add(ball);
+			add(player1);
+			add(player2);
 			add(player1Bricks);
 			add(player2Bricks);
+			add(scoreText);
 		}
 		
 		private function wallCollision1(target:FlxSprite, source:FlxSprite):void
@@ -123,7 +118,7 @@ package
 					player1.move(3);
 				}
 			}
-		
+			
 			world.ClearForces();
 		}
 	
