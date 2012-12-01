@@ -45,7 +45,7 @@ package
 			var fixtureDefinition:b2FixtureDef = new b2FixtureDef();
 			fixtureDefinition.friction = 0.0;
 			fixtureDefinition.restitution = 1.0;
-			fixtureDefinition.density = 0.7;
+			fixtureDefinition.density = 1.0;
 			fixtureDefinition.shape = boxShape;
 			
 			var bodyDefinition:b2BodyDef = new b2BodyDef();
