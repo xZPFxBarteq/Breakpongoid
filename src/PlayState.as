@@ -27,6 +27,7 @@ package
 		private var westWall:Wall;
 		private var player1Bricks:FlxGroup;
 		private var player2Bricks:FlxGroup;
+		private var pow:PowerUp;
 		
 		private var scoreText:FlxText;
 		private var score:String = "";
@@ -129,6 +130,18 @@ package
 			{
 				player1.move(0);
 			}
+			if (FlxG.keys.F)
+			{
+				pow = new PowerUp(ball, 1);
+			}else if (FlxG.keys.G)
+			{
+				pow = new PowerUp(ball, 2);
+			}
+			else if (FlxG.keys.R) 
+			{
+				pow = new PowerUp(ball, 0);
+			}
+			
 			
 			world.ClearForces();
 		}
