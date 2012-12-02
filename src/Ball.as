@@ -31,7 +31,7 @@ package
 			//trace("x: " + x + ", getposX: "+body.GetPosition().x+" + pxMtRatio: "+HelloWorld.pixelMeterRatio+", width: " + width );
 			//trace("y: " + y + ", getposY: "+body.GetPosition().y+" + pxMtRatio: "+HelloWorld.pixelMeterRatio+", width: " + height );
 			angle = body.GetAngle() * (180 / Math.PI);
-			super.update();
+			super.update();			
 		}
 		
 		public function createBody():void
@@ -54,6 +54,8 @@ package
 			body = world.CreateBody(bodyDefinition);
 			
 			body.CreateFixture(fixtureDefinition);
+			
+			body.SetUserData(new BodyType(BodyType.BALL));
 		}
 		public function setLinearVelocity(arg1:Number, arg2:Number) {
 			body.SetLinearVelocity(new b2Vec2( (body.GetLinearVelocity().x+arg1) , (body.GetLinearVelocity().y+arg2) ));

@@ -11,7 +11,6 @@ package
 	 */
 	public class GameObject extends FlxSprite
 	{
-		
 		protected var body:b2Body;
 		protected var world:b2World;
 		
