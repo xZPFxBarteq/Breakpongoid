@@ -51,7 +51,12 @@ package
 			body = world.CreateBody(bodyDefinition);
 			body.CreateFixture(fixtureDefinition);
 			
-			body.SetUserData(new BodyType(BodyType.BRICK));
+			body.SetUserData(new ContactData(BodyType.BRICK, this.onContact));
+		}
+		
+		public function onContact():void
+		{
+		
 		}
 	
 	/*private function killBrick():void {

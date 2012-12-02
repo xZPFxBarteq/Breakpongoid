@@ -9,6 +9,7 @@ package
 	public interface WithBody 
 	{
 		function createBody():void;
+		function onContact():void;
 	}
 	
 }

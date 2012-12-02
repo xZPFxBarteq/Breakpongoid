@@ -29,7 +29,8 @@ package
 		{
 			x = (body.GetPosition().x * HelloWorld.pixelMeterRatio) - width / 2;
 			y = (body.GetPosition().y * HelloWorld.pixelMeterRatio) - height / 2;
-			if (y < 2 || y > HelloWorld.windowHeight - height - 2) {
+			if (y < 2 || y > HelloWorld.windowHeight - height - 2)
+			{
 				body.SetLinearVelocity(new b2Vec2(0, 0));
 			}
 			super.update();
@@ -37,7 +38,8 @@ package
 		
 		public function move(byPixels:int):void
 		{
-			if (y > 2 || y < HelloWorld.windowHeight - height - 2){
+			if (y > 2 || y < HelloWorld.windowHeight - height - 2)
+			{
 				body.SetLinearVelocity(new b2Vec2(0, byPixels));
 			}
 		}
@@ -63,7 +65,12 @@ package
 			body = world.CreateBody(bodyDefinition);
 			body.CreateFixture(fixtureDefinition);
 			
-			body.SetUserData(new BodyType(BodyType.PLAYER));
+			body.SetUserData(new ContactData(BodyType.PLAYER, this.onContact));
+		}
+		
+		public function onContact():void
+		{
+			trace("PING from P" + id);
 		}
 	
 	}

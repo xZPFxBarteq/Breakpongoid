@@ -17,14 +17,16 @@ package
 		
 		override public function EndContact(contact:b2Contact):void
 		{
-			if (contact.GetFixtureA().GetBody().GetUserData().getType() == BodyType.BALL && contact.GetFixtureB().GetBody().GetUserData().getType() == BodyType.PLAYER)
+			var firstObjectData:ContactData = contact.GetFixtureA().GetBody().GetUserData() as ContactData;
+			var secondObjectData:ContactData = contact.GetFixtureB().GetBody().GetUserData() as ContactData;
+			if (firstObjectData.getBodyType() == BodyType.BALL && secondObjectData.getBodyType() == BodyType.PLAYER)
 			{
-				trace("PING!");
+				secondObjectData.getOnContact().call();
 			}
 			
-			if (contact.GetFixtureA().GetBody().GetUserData().getType() == BodyType.PLAYER && contact.GetFixtureB().GetBody().GetUserData().getType() == BodyType.BALL)
+			if (firstObjectData.getBodyType() == BodyType.PLAYER && secondObjectData.getBodyType() == BodyType.BALL)
 			{
-				trace("PONG!");
+				firstObjectData.getOnContact().call();
 			}
 		}
 	}

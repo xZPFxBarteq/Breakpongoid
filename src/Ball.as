@@ -23,9 +23,8 @@ package
 		public function Ball(position:FlxPoint, world:b2World)
 		{
 			super(position, new FlxPoint(5, 5), world);
-			makeGraphic(10, 10, 0x00000000);
+			makeGraphic(5, 5, 0xffff0000);
 			alpha = 0.7;
-			drawCircle(this, new FlxPoint(5, 5), 5);
 			createBody();
 		}
 		
@@ -39,38 +38,10 @@ package
 			super.update();
 		}
 		
-		private function drawCircle(Sprite:FlxSprite, Center:FlxPoint, Radius:Number, LineColor:uint = 0xffff0000, LineThickness:uint = 1, FillColor:uint = 0xffff0000):void
-		{
-			
-			var gfx:Graphics = FlxG.flashGfx;
-			gfx.clear();
-			
-			// Line alpha
-			var alphaComponent:Number = Number((LineColor >> 24) & 0xFF) / 255;
-			if (alphaComponent <= 0)
-				alphaComponent = 1;
-			
-			gfx.lineStyle(LineThickness, LineColor, alphaComponent);
-			
-			// Fill alpha
-			alphaComponent = Number((FillColor >> 24) & 0xFF) / 255;
-			if (alphaComponent <= 0)
-				alphaComponent = 1;
-			
-			gfx.beginFill(FillColor & 0x00ffffff, alphaComponent);
-			
-			gfx.drawCircle(Center.x, Center.y, Radius);
-			
-			gfx.endFill();
-			
-			Sprite.pixels.draw(FlxG.flashGfxSprite);
-			Sprite.dirty = true;
-		}
-		
 		public function createBody():void
 		{
 			var circleShape:b2CircleShape = new b2CircleShape();
-			circleShape.SetRadius(5 / HelloWorld.pixelMeterRatio);
+			circleShape.SetRadius(2.5 / HelloWorld.pixelMeterRatio);
 			
 			var fixtureDefinition:b2FixtureDef = new b2FixtureDef();
 			fixtureDefinition.friction = 0.0;
@@ -89,7 +60,12 @@ package
 			
 			body.CreateFixture(fixtureDefinition);
 			
-			body.SetUserData(new BodyType(BodyType.BALL));
+			body.SetUserData(new ContactData(BodyType.BALL, this.onContact));
+		}
+		
+		public function onContact():void
+		{
+		
 		}
 		
 		public function setLinearVelocity(arg1:Number, arg2:Number):void

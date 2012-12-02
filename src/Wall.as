@@ -14,7 +14,8 @@ package
 	 */
 	public class Wall extends GameObject implements WithBody
 	{
-		public function Wall(position:FlxPoint, dimensions:FlxPoint, world:b2World)	{
+		public function Wall(position:FlxPoint, dimensions:FlxPoint, world:b2World)
+		{
 			super(position, dimensions, world);
 			makeGraphic(width, height, 0xff3a5c39);
 			createBody();
@@ -39,7 +40,12 @@ package
 			body = world.CreateBody(bodyDefinition);
 			body.CreateFixture(fixtureDefinition);
 			
-			body.SetUserData(new BodyType(BodyType.WALL));
+			body.SetUserData(new ContactData(BodyType.WALL, this.onContact));
+		}
+		
+		public function onContact():void
+		{
+		
 		}
 	}
 
