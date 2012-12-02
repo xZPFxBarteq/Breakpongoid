@@ -16,7 +16,8 @@ package
 	 */
 	public class Ball extends GameObject implements WithBody
 	{
-		public var flag = 0;
+		public var flag:int = 0;
+		
 		public function Ball(position:FlxPoint, world:b2World)
 		{
 			super(position, new FlxPoint(5, 5), world);
@@ -31,7 +32,7 @@ package
 			//trace("x: " + x + ", getposX: "+body.GetPosition().x+" + pxMtRatio: "+HelloWorld.pixelMeterRatio+", width: " + width );
 			//trace("y: " + y + ", getposY: "+body.GetPosition().y+" + pxMtRatio: "+HelloWorld.pixelMeterRatio+", width: " + height );
 			angle = body.GetAngle() * (180 / Math.PI);
-			super.update();			
+			super.update();
 		}
 		
 		public function createBody():void
@@ -42,8 +43,8 @@ package
 			var fixtureDefinition:b2FixtureDef = new b2FixtureDef();
 			fixtureDefinition.friction = 0.0;
 			fixtureDefinition.restitution = 1.0;
-			fixtureDefinition.density = 0.7;			
-			fixtureDefinition.shape = boxShape;			
+			fixtureDefinition.density = 0.7;
+			fixtureDefinition.shape = boxShape;
 			
 			var bodyDefinition:b2BodyDef = new b2BodyDef();
 			bodyDefinition.position.Set((x + (width / 2)) / HelloWorld.pixelMeterRatio, (y + (height / 2)) / HelloWorld.pixelMeterRatio);
@@ -57,14 +58,22 @@ package
 			
 			body.SetUserData(new BodyType(BodyType.BALL));
 		}
-		public function setLinearVelocity(arg1:Number, arg2:Number) {
-			body.SetLinearVelocity(new b2Vec2( (body.GetLinearVelocity().x+arg1) , (body.GetLinearVelocity().y+arg2) ));
+		
+		public function setLinearVelocity(arg1:Number, arg2:Number):void
+		{
+			body.SetLinearVelocity(new b2Vec2((body.GetLinearVelocity().x + arg1), (body.GetLinearVelocity().y + arg2)));
 		}
-		public function setBiggerBall():void {
+		
+		public function setBiggerBall():void
+		{
 			scale = new FlxPoint(5, 5);
+			//TODO trzeba także przeskalować body piłki, a dokładniej skasować poprzednie i utworzyć nowe o zadanej wielkości, bo Box2D nie pozwala na skalowanie.
 		}
-		public function setDefaultSizeBall(): void {
+		
+		public function setDefaultSizeBall():void
+		{			
 			scale = new FlxPoint(1, 1);
+			//TODO trzeba także przeskalować body piłki, a dokładniej skasować poprzednie i utworzyć nowe o zadanej wielkości, bo Box2D nie pozwala na skalowanie.
 		}
 	}
 
