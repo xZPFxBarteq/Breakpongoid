@@ -1,9 +1,11 @@
 package
 {
+	import flash.display.Graphics;
 	import flash.events.TextEvent;
 	import org.flixel.FlxSprite;
 	import org.flixel.FlxPoint;
 	import org.flixel.FlxObject;
+	import org.flixel.FlxG;
 	import Box2D.Dynamics.*;
 	import Box2D.Collision.*;
 	import Box2D.Collision.Shapes.*;
@@ -21,7 +23,9 @@ package
 		public function Ball(position:FlxPoint, world:b2World)
 		{
 			super(position, new FlxPoint(5, 5), world);
-			makeGraphic(width, height, 0xFFFF0000);
+			makeGraphic(10, 10, 0x00000000);
+			alpha = 0.7;
+			drawCircle(this, new FlxPoint(5, 5), 5);
 			createBody();
 		}
 		
@@ -35,21 +39,50 @@ package
 			super.update();
 		}
 		
+		private function drawCircle(Sprite:FlxSprite, Center:FlxPoint, Radius:Number, LineColor:uint = 0xffff0000, LineThickness:uint = 1, FillColor:uint = 0xffff0000):void
+		{
+			
+			var gfx:Graphics = FlxG.flashGfx;
+			gfx.clear();
+			
+			// Line alpha
+			var alphaComponent:Number = Number((LineColor >> 24) & 0xFF) / 255;
+			if (alphaComponent <= 0)
+				alphaComponent = 1;
+			
+			gfx.lineStyle(LineThickness, LineColor, alphaComponent);
+			
+			// Fill alpha
+			alphaComponent = Number((FillColor >> 24) & 0xFF) / 255;
+			if (alphaComponent <= 0)
+				alphaComponent = 1;
+			
+			gfx.beginFill(FillColor & 0x00ffffff, alphaComponent);
+			
+			gfx.drawCircle(Center.x, Center.y, Radius);
+			
+			gfx.endFill();
+			
+			Sprite.pixels.draw(FlxG.flashGfxSprite);
+			Sprite.dirty = true;
+		}
+		
 		public function createBody():void
 		{
-			var boxShape:b2PolygonShape = new b2PolygonShape();
-			boxShape.SetAsBox((width / 2) / HelloWorld.pixelMeterRatio, (height / 2) / HelloWorld.pixelMeterRatio);
+			var circleShape:b2CircleShape = new b2CircleShape();
+			circleShape.SetRadius(5 / HelloWorld.pixelMeterRatio);
 			
 			var fixtureDefinition:b2FixtureDef = new b2FixtureDef();
 			fixtureDefinition.friction = 0.0;
 			fixtureDefinition.restitution = 1.0;
 			fixtureDefinition.density = 0.7;
-			fixtureDefinition.shape = boxShape;
+			fixtureDefinition.shape = circleShape;
 			
 			var bodyDefinition:b2BodyDef = new b2BodyDef();
 			bodyDefinition.position.Set((x + (width / 2)) / HelloWorld.pixelMeterRatio, (y + (height / 2)) / HelloWorld.pixelMeterRatio);
 			bodyDefinition.angle = 30 * (Math.PI / 180);
 			bodyDefinition.linearVelocity = new b2Vec2(3, 3);
+			bodyDefinition.angularVelocity = 1;
 			bodyDefinition.type = b2Body.b2_dynamicBody;
 			
 			body = world.CreateBody(bodyDefinition);
@@ -71,7 +104,7 @@ package
 		}
 		
 		public function setDefaultSizeBall():void
-		{			
+		{
 			scale = new FlxPoint(1, 1);
 			//TODO trzeba także przeskalować body piłki, a dokładniej skasować poprzednie i utworzyć nowe o zadanej wielkości, bo Box2D nie pozwala na skalowanie.
 		}
