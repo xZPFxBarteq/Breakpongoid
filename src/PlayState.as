@@ -18,13 +18,6 @@ package
 		private var ball:Ball;
 		private var player1:Player;
 		private var player2:Player;
-		private var wallGroup1:FlxGroup;
-		private var wallGroup2:FlxGroup;
-		//pozniej zapakowac w jakas klase:
-		private var northWall:Wall;
-		private var southWall:Wall;
-		private var eastWall:Wall;
-		private var westWall:Wall;
 		private var player1Bricks:FlxGroup;
 		private var player2Bricks:FlxGroup;
 		private var pow:PowerUp;
@@ -133,15 +126,15 @@ package
 			if (FlxG.keys.F)
 			{
 				pow = new PowerUp(ball, 1);
-			}else if (FlxG.keys.G)
+			}
+			else if (FlxG.keys.G)
 			{
 				pow = new PowerUp(ball, 2);
 			}
-			else if (FlxG.keys.R) 
+			else if (FlxG.keys.R)
 			{
 				pow = new PowerUp(ball, 0);
 			}
-			
 			
 			world.ClearForces();
 		}
