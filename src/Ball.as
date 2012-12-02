@@ -35,6 +35,17 @@ package
 			//trace("x: " + x + ", getposX: "+body.GetPosition().x+" + pxMtRatio: "+HelloWorld.pixelMeterRatio+", width: " + width );
 			//trace("y: " + y + ", getposY: "+body.GetPosition().y+" + pxMtRatio: "+HelloWorld.pixelMeterRatio+", width: " + height );
 			angle = body.GetAngle() * (180 / Math.PI);
+			if (body.GetLinearVelocity().x > 3 || body.GetLinearVelocity().x < -3 || body.GetLinearVelocity().y > 3 || body.GetLinearVelocity().y < -3)
+			{
+				if (body.GetLinearDamping() != 0.2)
+				{
+					body.SetLinearDamping(0.2);
+				}
+			}
+			else if (body.GetLinearDamping() != 0)
+			{
+				body.SetLinearDamping(0);
+			}
 			super.update();
 		}
 		
@@ -54,6 +65,7 @@ package
 			bodyDefinition.angle = 30 * (Math.PI / 180);
 			bodyDefinition.linearVelocity = new b2Vec2(3, 3);
 			bodyDefinition.angularVelocity = 1;
+			bodyDefinition.angularDamping = 0.5;
 			bodyDefinition.type = b2Body.b2_dynamicBody;
 			
 			body = world.CreateBody(bodyDefinition);

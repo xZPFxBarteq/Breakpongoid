@@ -57,9 +57,10 @@ package
 		public function onContact():void
 		{			
 			kill();
-			//chuj wie czemu nie działa:
+			//chuj wie czemu nie działa?:
 			world.DestroyBody(body);
 		}
+
 	
 	/*private function killBrick():void {
 	   //TODO wywolac bonus
