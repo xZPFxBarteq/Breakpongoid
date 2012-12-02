@@ -23,8 +23,15 @@ package
 			{
 				secondObjectData.getOnContact().call();
 			}
-			
-			if (firstObjectData.getBodyType() == BodyType.PLAYER && secondObjectData.getBodyType() == BodyType.BALL)
+			else if (firstObjectData.getBodyType() == BodyType.PLAYER && secondObjectData.getBodyType() == BodyType.BALL)
+			{
+				firstObjectData.getOnContact().call();
+			}
+			else if (firstObjectData.getBodyType() == BodyType.BALL && secondObjectData.getBodyType() == BodyType.BRICK)
+			{
+				secondObjectData.getOnContact().call();
+			}
+			else if (firstObjectData.getBodyType() == BodyType.BRICK && secondObjectData.getBodyType() == BodyType.BALL)
 			{
 				firstObjectData.getOnContact().call();
 			}
