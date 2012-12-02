@@ -24,6 +24,7 @@ package
 		private var southWall:Wall;
 		private var eastWall:Wall;
 		private var westWall:Wall;
+		private var pow1:PowerUp;
 		
 		private var scoreText:FlxText;
 		private var score:String = "";
@@ -66,11 +67,14 @@ package
 		private function wallCollision1(target:FlxSprite, source:FlxSprite):void {
 			//player1.wall.size--;
 			//score = player1.wall.size + " : " + player2.wall.size;
+			pow1 = new PowerUp(ball, 1);
+			
 			target.kill();
 		}
 		private function wallCollision2(target:FlxSprite, source:FlxSprite):void {
 			//player2.wall.size--;
 			//score = player1.wall.size + " : " + player2.wall.size;
+			trace("lol");
 			target.kill();
 		}
   
@@ -83,6 +87,7 @@ package
 			FlxG.collide(wallGroup1, ball, wallCollision1);
 			FlxG.collide(wallGroup2, ball, wallCollision2);
 			FlxG.collide();
+			//FlxG.collide(ball, northWall, wallCollision1);
 			       
 
 			
@@ -118,7 +123,20 @@ package
 					player1.move(3);
 				}
 			}
-			
+			// testy Power upów
+			function randomNumber(low:Number=0, high:Number=1):Number // z dupy funkcja zerznieta z neta :<
+			{
+			  return Math.floor(Math.random() * (1+high-low)) + low;
+			}
+			if (FlxG.keys.F)
+			{
+				pow1 = new PowerUp(ball, 1);
+			}
+			else if (FlxG.keys.G) { 
+				pow1 = new PowerUp(ball, 2);
+			}else if (FlxG.keys.R) {// reset
+				pow1 = new PowerUp(ball, 0);
+			}
 		
 		}
 	

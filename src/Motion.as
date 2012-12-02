@@ -6,7 +6,7 @@ package
 	 */
 	public class Motion 
 	{
-		// Ujemne X - lewo , Y -w dol, dodanie X - w prawo, Y - w gore.
+		// Ujemne X - lewo , Y -w dol, dodatnie X - w prawo, Y - w gore.
 		public var directionX:Number=1;
 		public var directionY:Number = -1;
 		

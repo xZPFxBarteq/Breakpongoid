@@ -16,7 +16,7 @@ package
 	 */
 	public class Ball extends GameObject implements WithBody
 	{
-		
+		public var flag = 0;
 		public function Ball(position:FlxPoint, world:b2World)
 		{
 			super(position, new FlxPoint(5, 5), world);
@@ -28,6 +28,8 @@ package
 		{
 			x = (body.GetPosition().x * HelloWorld.pixelMeterRatio) - width / 2;
 			y = (body.GetPosition().y * HelloWorld.pixelMeterRatio) - height / 2;
+			//trace("x: " + x + ", getposX: "+body.GetPosition().x+" + pxMtRatio: "+HelloWorld.pixelMeterRatio+", width: " + width );
+			//trace("y: " + y + ", getposY: "+body.GetPosition().y+" + pxMtRatio: "+HelloWorld.pixelMeterRatio+", width: " + height );
 			angle = body.GetAngle() * (180 / Math.PI);
 			super.update();
 		}
@@ -50,9 +52,18 @@ package
 			bodyDefinition.type = b2Body.b2_dynamicBody;
 			
 			body = world.CreateBody(bodyDefinition);
+			
 			body.CreateFixture(fixtureDefinition);
 		}
-	
+		public function setLinearVelocity(arg1:Number, arg2:Number) {
+			body.SetLinearVelocity(new b2Vec2( (body.GetLinearVelocity().x+arg1) , (body.GetLinearVelocity().y+arg2) ));
+		}
+		public function setBiggerBall():void {
+			scale = new FlxPoint(5, 5);
+		}
+		public function setDefaultSizeBall(): void {
+			scale = new FlxPoint(1, 1);
+		}
 	}
 
 }
