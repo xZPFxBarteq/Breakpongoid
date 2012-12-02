@@ -18,7 +18,6 @@ package
 		private var ball:Ball;
 		private var player1:Player;
 		private var player2:Player;
-		private var ball:Ball;
 		private var wallGroup1:FlxGroup;
 		private var wallGroup2:FlxGroup;
 		//pozniej zapakowac w jakas klase:
